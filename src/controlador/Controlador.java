@@ -1,4 +1,5 @@
 package controlador;
+import modelo.Agenda;
 import vista.Vista;
 import modelo.Contacto;
 
@@ -93,7 +94,8 @@ public class Controlador {
         String nombre = vista.pedirNombreContacto();
         String apellido = vista.pedirApellidoContacto();
 
-        Contacto contactoExistente = agenda.buscarContacto(nombre, apellido);
+        Contacto contactoExistente = agenda.modificarTelefono(nombre, apellido, nuevoNumero);
+
 
         if(contactoExistente == null){
             vista.mostrarMensaje("No se encontró un contacto con ese nombre o apellido.");
@@ -141,7 +143,7 @@ public class Controlador {
         int espaciosLibres = agenda.espacioLibre();
 
         if(agendaEstaLlena){
-            vista.mostrarMensaje("La agenda se encuentra completamente llena."):
+            vista.mostrarMensaje("La agenda se encuentra completamente llena.");
         }else{
             vista.mostrarMensaje("La agenda no esta llena. Tienes " + espaciosLibres + " Espacios libres.");
         }
