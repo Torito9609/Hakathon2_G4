@@ -1,4 +1,7 @@
 package vista;
+import modelo.Contacto;
+
+import java.util.List;
 import java.util.Scanner;
 public class Vista {
 
@@ -30,15 +33,53 @@ public class Vista {
 
     public void mostrarContacto(Contacto contacto) {
         System.out.println("|||DATOS DE CONTACTO|||");
-        System.out.println("Nombre: " + contacto.nombre);
-        System.out.println("Apellido: " + contacto.apellido);
-        System.out.println("Teléfono: " + contacto.telefono);
+        System.out.println("Nombre: " + contacto.getNombre());
+        System.out.println("Apellido: " + contacto.getApellido());
+        System.out.println("Teléfono: " + contacto.getTelefono());
     }
 
     public void mostrarListaContactos(List<Contacto> contactos) {
-        for(Contacto : contacto) {
-            
+        for(Contacto contacto: contactos) {
+            System.out.println("Nombre: " + contacto.getNombre());
+            System.out.println("Apellido: " + contacto.getApellido());
+            System.out.println("Teléfono: : " + contacto.getTelefono());
         }
     }
+
+    public String[]  pedirDatosContacto(){
+
+        String[] datos = new String[3];
+
+        System.out.println("Ingrese el nombre: ");
+        String nombre = scanner.nextLine();
+        datos[0] = nombre;
+        System.out.println("Ingrese el apellido: ");
+        String apellido = scanner.nextLine();
+        datos[1] = apellido;
+        System.out.println("Ingrese el número de telefono: ");
+        String telefono = scanner.nextLine();
+        datos[2] = telefono;
+
+        return datos;
+    }
+
+    public String pedirNombreContacto(){
+        System.out.println("Ingrese el nombre: ");
+        String nombre = scanner.nextLine();
+        return nombre;
+    }
+
+    public String pedirApellidoContacto(){
+        System.out.println("Ingrese el apellido: ");
+        String apellido = scanner.nextLine();
+        return apellido;
+    }
+
+    public String pedirNumeroContacto(){
+        System.out.println("Ingrese el teléfono: ");
+        String telefono = scanner.nextLine();
+        return telefono;
+    }
+
 
 }
