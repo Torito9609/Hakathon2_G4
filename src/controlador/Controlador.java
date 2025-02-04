@@ -1,4 +1,6 @@
 package controlador;
+import vista.Vista;
+import modelo.Contacto;
 
 public class Controlador {
     private Vista vista;
@@ -13,7 +15,7 @@ public class Controlador {
         boolean salir = false;
 
         while (!salir) {
-            int opcion = vista.mostrarMenuYObtenerOpcion();
+            int opcion = vista.mostrarMenuPrincipal();
 
             switch (opcion) {
                 case 1:
@@ -80,9 +82,9 @@ public class Controlador {
         boolean exito = agenda.eliminarContacto(contactoAEliminar);
 
         if (exito){
-            vista.mostrarMensaje("Contacto eliminado con éxito.")
+            vista.mostrarMensaje("Contacto eliminado con éxito.");
         } else{
-            vista.mostrarMensaje("El contacto no se puede eliminar por una razón descnocida.")
+            vista.mostrarMensaje("El contacto no se puede eliminar por una razón descnocida.");
         }
 
     }
@@ -91,7 +93,7 @@ public class Controlador {
         String nombre = vista.pedirNombreContacto();
         String apellido = vista.pedirApellidoContacto();
 
-        Contacto contactoExistente = agenda.buscarContacto();
+        Contacto contactoExistente = agenda.buscarContacto(nombre, apellido);
 
         if(contactoExistente == null){
             vista.mostrarMensaje("No se encontró un contacto con ese nombre o apellido.");
@@ -111,7 +113,7 @@ public class Controlador {
 
     public void manejarBuscarContacto(){
         String nombre = vista.pedirNombreContacto();
-        String apellido = vista.pedirApellidoCOntacto();
+        String apellido = vista.pedirApellidoContacto();
 
         Contacto contactoAMostrar = agenda.buscarContacto(nombre, apellido);
 
