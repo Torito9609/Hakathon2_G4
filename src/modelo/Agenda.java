@@ -43,14 +43,15 @@ public class Agenda {
         return ordenados;
     }
 
-    public void buscarContacto(String nombre, String apellido) {
+    public Contacto buscarContacto(String nombre, String apellido) {
         for (Contacto c : contactos) {
             if (c.getNombre().equals(nombre) && c.getApellido().equals(apellido)) {
-                System.out.println("Teléfono de " + nombre + " " + apellido + ": " + c.getTelefono());
-                return;
+                return c;
+
             }
         }
-        System.out.println("Contacto no encontrado.");
+        return null;
+
     }
 
     public boolean eliminarContacto(Contacto c) {
