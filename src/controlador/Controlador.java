@@ -52,7 +52,7 @@ public class Controlador {
 
         Contacto nuevoContacto = new Contacto(datos[0], datos[1], datos[2]);
 
-        if (agenda.estaLlena()) {
+        if (agenda.agendaLlena()) {
             vista.mostrarMensaje("La agenda está llena. No se puede agregar más contactos.");
             return;
         }
@@ -94,7 +94,7 @@ public class Controlador {
         String nombre = vista.pedirNombreContacto();
         String apellido = vista.pedirApellidoContacto();
 
-        Contacto contactoExistente = agenda.modificarTelefono(nombre, apellido, nuevoNumero);
+        Contacto contactoExistente = agenda.buscarContacto(nombre, apellido);
 
 
         if(contactoExistente == null){

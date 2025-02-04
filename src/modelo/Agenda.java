@@ -47,7 +47,7 @@ public class Agenda {
         for (Contacto c : contactos) {
             if (c.getNombre().equals(nombre) && c.getApellido().equals(apellido)) {
                 System.out.println("Teléfono de " + nombre + " " + apellido + ": " + c.getTelefono());
-                return;
+                return c;
             }
         }
         System.out.println("Contacto no encontrado.");

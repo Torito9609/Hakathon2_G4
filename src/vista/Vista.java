@@ -17,12 +17,11 @@ public class Vista {
         System.out.println("Porfavor elija una opción: ");
         System.out.println("1)Agregar Contacto");
         System.out.println("2)Eliminar Contacto");
-        System.out.println("3)Buscar Contacto");
-        System.out.println("4)Actualizar Contacto");
+        System.out.println("3)Editar teléfono de un Contacto");
+        System.out.println("4)Buscar Contacto por nombre apellido");
         System.out.println("5)Mostrar todos los contactos");
-        System.out.println("6)Modificar contactos");
-        System.out.println("7)Espacio disponible");
-        System.out.println("8)Salir");
+        System.out.println("6)Verificar espacio disponible en la agenda");
+        System.out.println("7)Salir");
 
         return scanner.nextInt();
     }
