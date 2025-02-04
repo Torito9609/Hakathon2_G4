@@ -5,7 +5,10 @@ public class Contacto {
     private String apellido;
     private String telefono;
 
-    public Contacto() {
+    public Contacto(String nombre, String apellido) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = "0000000";
     }
     //cosntructor con validacion de campos vacios
     public Contacto(String nombre, String apellido, String telefono) {
@@ -15,6 +18,10 @@ public class Contacto {
         if (apellido == null || apellido.trim().isEmpty()) {
             throw new IllegalArgumentException("El apellido no puede estar vacío");
         }
+        if (telefono == null || telefono.trim().isEmpty()) {
+            throw new IllegalArgumentException("El teléfono no puede estar vacío");
+        }
+
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
@@ -32,6 +39,14 @@ public class Contacto {
         // Comparación de nombre y apellido ignorando mayúsculas y minúsculas
         return this.nombre.equalsIgnoreCase(contacto.nombre) &&
                 this.apellido.equalsIgnoreCase(contacto.apellido);
+    }
+
+    //Sobre carga del método toString de la clase abstracta Object.
+    @Override
+    public String toString(){
+        return("Nombre: " + getNombre() + "\n" +
+                "Apellido: " + getApellido() + "\n" +
+                "Telefono: " + getTelefono());
     }
     //getters y setters
     public String getNombre() {

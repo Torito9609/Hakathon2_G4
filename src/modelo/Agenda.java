@@ -47,7 +47,6 @@ public class Agenda {
         for (Contacto c : contactos) {
             if (c.getNombre().equals(nombre) && c.getApellido().equals(apellido)) {
                 return c;
-
             }
         }
         return null;

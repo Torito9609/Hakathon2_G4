@@ -3,6 +3,8 @@ import modelo.Agenda;
 import vista.Vista;
 import modelo.Contacto;
 
+import java.util.List;
+
 public class Controlador {
     private Vista vista;
     private Agenda agenda;
@@ -50,31 +52,36 @@ public class Controlador {
     public void manejarAnadirContacto() {
         String[] datos = vista.pedirDatosContacto();
 
-        Contacto nuevoContacto = new Contacto(datos[0], datos[1], datos[2]);
+        try{
+            Contacto nuevoContacto = new Contacto(datos[0], datos[1], datos[2]);
+            if (agenda.agendaLlena()) {
+                vista.mostrarMensaje("La agenda está llena. No se puede agregar más contactos.");
+                return;
+            }
 
-        if (agenda.agendaLlena()) {
-            vista.mostrarMensaje("La agenda está llena. No se puede agregar más contactos.");
-            return;
-        }
+            if (agenda.existeContacto(nuevoContacto)) {
+                vista.mostrarMensaje("El contacto ya existe en la agenda. No se puede agregar un duplicado.");
+                return;
+            }
 
-        if (agenda.existeContacto(nuevoContacto)) {
-            vista.mostrarMensaje("El contacto ya existe en la agenda. No se puede agregar un duplicado.");
-            return;
-        }
+            boolean exito = agenda.añadirContacto(nuevoContacto);
 
-        boolean exito = agenda.añadirContacto(nuevoContacto);
+            if (exito) {
+                vista.mostrarMensaje("Contacto añadido con éxito.");
+            } else {
+                vista.mostrarMensaje("No se pudo añadir el contacto por una razón desconocida.");
+            }
+        }catch (Exception e){
+            vista.mostrarMensaje(e.getMessage());
 
-        if (exito) {
-            vista.mostrarMensaje("Contacto añadido con éxito.");
-        } else {
-            vista.mostrarMensaje("No se pudo añadir el contacto por una razón desconocida.");
         }
     }
 
     public void manejarEliminarContacto(){
-        String[] datos = vista.pedirDatosContacto();
+        String nombre = vista.pedirNombreContacto();
+        String apellido = vista.pedirApellidoContacto();
 
-        Contacto contactoAEliminar = new Contacto(datos[0], datos[1], datos[2]);
+        Contacto contactoAEliminar = new Contacto(nombre, apellido);
 
         if(!agenda.existeContacto(contactoAEliminar)){
             vista.mostrarMensaje("El contacto no existe en la agenda y no se puede eliminar.");
@@ -104,7 +111,7 @@ public class Controlador {
 
         String nuevoNumero = vista.pedirNumeroContacto();
 
-        boolean exito = agenda.modificarNumero(contactoExistente, nuevoNumero);
+        boolean exito = agenda.modificarTelefono(contactoExistente.getNombre(), contactoExistente.getApellido(), nuevoNumero);
 
         if(exito){
             vista.mostrarMensaje("Número modificado con éxito.");
@@ -133,9 +140,9 @@ public class Controlador {
             vista.mostrarMensaje("No hay contactos en la agenda.");
             return;
         }
-        for(Contacto contacto: listaContactos){
-            vista.mostrarContacto(contacto);
-        }
+        System.out.println("");
+        vista.mostrarListaContactos(listaContactos);
+        System.out.println("");
     }
 
     public void manejarAgendaLlena_EspaciosLibres(){

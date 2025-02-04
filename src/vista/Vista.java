@@ -1,6 +1,7 @@
 package vista;
 import modelo.Contacto;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.List;
 import java.util.Scanner;
 public class Vista {
@@ -28,20 +29,21 @@ public class Vista {
 
     public void mostrarMensaje(String mensaje){
         System.out.println(mensaje);
+        //scanner.nextLine();
     }
 
     public void mostrarContacto(Contacto contacto) {
         System.out.println("|||DATOS DE CONTACTO|||");
-        System.out.println("Nombre: " + contacto.getNombre());
-        System.out.println("Apellido: " + contacto.getApellido());
-        System.out.println("Teléfono: " + contacto.getTelefono());
+        System.out.println(contacto.toString());
+
     }
 
     public void mostrarListaContactos(List<Contacto> contactos) {
+        int contador = 1;
         for(Contacto contacto: contactos) {
-            System.out.println("Nombre: " + contacto.getNombre());
-            System.out.println("Apellido: " + contacto.getApellido());
-            System.out.println("Teléfono: : " + contacto.getTelefono());
+            System.out.println(contador + " - ");
+            System.out.println(contacto.toString());
+            contador++;
         }
     }
 
@@ -50,6 +52,7 @@ public class Vista {
         String[] datos = new String[3];
 
         System.out.println("Ingrese el nombre: ");
+        scanner.nextLine();
         String nombre = scanner.nextLine();
         datos[0] = nombre;
         System.out.println("Ingrese el apellido: ");
@@ -64,20 +67,36 @@ public class Vista {
 
     public String pedirNombreContacto(){
         System.out.println("Ingrese el nombre: ");
+        scanner.nextLine();
         String nombre = scanner.nextLine();
         return nombre;
     }
 
     public String pedirApellidoContacto(){
         System.out.println("Ingrese el apellido: ");
+        //scanner.nextLine();
         String apellido = scanner.nextLine();
         return apellido;
     }
 
     public String pedirNumeroContacto(){
         System.out.println("Ingrese el teléfono: ");
+        //scanner.nextLine();
         String telefono = scanner.nextLine();
         return telefono;
+    }
+
+    public int pedirOpcionAgenda(){
+        System.out.println("*****BIENVENIDO AL SISTEMA DE GESTIÓN DE AGENDA*****");
+        System.out.println("Para empezar, debemos crear una nueva agenda");
+        System.out.println("1. Agenda por defecto (Solo tendrás 10 espacios disponibles)");
+        System.out.println("2. Ingresar la cantidad de espacios disponibles deseada.");
+        return scanner.nextInt();
+    }
+
+    public int pedirEspacioAgenda(){
+        System.out.println("Ingrese la cantidad de espacios que quiere para la agenda: ");
+        return scanner.nextInt();
     }
 
 
