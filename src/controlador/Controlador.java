@@ -12,11 +12,34 @@ public class Controlador {
     public void ejecutar(){
         boolean salir = false;
 
-        while(!salir){
-            int opcion = vista.mostrarMenuPrincipal();
+        while (!salir) {
+            int opcion = vista.mostrarMenuYObtenerOpcion();
 
-            switch (opcion){
-                case
+            switch (opcion) {
+                case 1:
+                    manejarAnadirContacto();
+                    break;
+                case 2:
+                    manejarEliminarContacto();
+                    break;
+                case 3:
+                    manejarModificarTelefono();
+                    break;
+                case 4:
+                    manejarBuscarContacto();
+                    break;
+                case 5:
+                    manejarListarContactos();
+                    break;
+                case 6:
+                    manejarAgendaLlena_EspaciosLibres();
+                    break;
+                case 7:
+                    salir = true;
+                    vista.mostrarMensaje("Saliendo de la agenda...");
+                    break;
+                default:
+                    vista.mostrarMensaje("Opción no válida. Intente de nuevo.");
             }
         }
     }
@@ -45,7 +68,7 @@ public class Controlador {
         }
     }
 
-    public void manejarElimiarContacto(){
+    public void manejarEliminarContacto(){
         String[] datos = vista.pedirDatosContacto();
 
         Contacto contactoAEliminar = new Contacto(datos[0], datos[1], datos[2]);
