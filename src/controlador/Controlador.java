@@ -1,5 +1,6 @@
 package controlador;
 import modelo.Agenda;
+import vista.Vista;
 import modelo.Contacto;
 
 public class Controlador {
@@ -15,7 +16,7 @@ public class Controlador {
         boolean salir = false;
 
         while (!salir) {
-            int opcion = vista.mostrarMenuYObtenerOpcion();
+            int opcion = vista.mostrarMenuPrincipal();
 
             switch (opcion) {
                 case 1:
@@ -95,6 +96,7 @@ public class Controlador {
 
         Contacto contactoExistente = agenda.modificarTelefono(nombre, apellido, nuevoNumero);
 
+
         if(contactoExistente == null){
             vista.mostrarMensaje("No se encontró un contacto con ese nombre o apellido.");
             return;
@@ -113,7 +115,7 @@ public class Controlador {
 
     public void manejarBuscarContacto(){
         String nombre = vista.pedirNombreContacto();
-        String apellido = vista.pedirApellidoCOntacto();
+        String apellido = vista.pedirApellidoContacto();
 
         Contacto contactoAMostrar = agenda.buscarContacto(nombre, apellido);
 
