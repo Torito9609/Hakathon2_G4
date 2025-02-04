@@ -8,14 +8,14 @@ public class Agenda {
 
     public Agenda() {
         this(TAMANIO_POR_DEFECTO);
-    }
+    } //Constructor agenda por defecto
 
-    public Agenda(int maxContactos) {
+    public Agenda(int maxContactos) { // Constructor agenda para un espacio dado por el usuario
         this.maxContactos = maxContactos;
         this.contactos = new ArrayList<>();
     }
 
-    public boolean añadirContacto(Contacto c) {
+    public boolean añadirContacto(Contacto c) { // Método para añadir contacto
         if (agendaLlena()) return false;
 
         for (Contacto contacto : contactos) {
@@ -28,7 +28,7 @@ public class Agenda {
         return true;
     }
 
-    public boolean existeContacto(Contacto c) {
+    public boolean existeContacto(Contacto c) { // Método para verificar contacto existente
         for (Contacto contacto : contactos) {
             if (contacto.equals(c)) {
                 return true;
@@ -37,13 +37,13 @@ public class Agenda {
         return false;
     }
 
-    public List<Contacto> listarContactos() {
+    public List<Contacto> listarContactos() { // Método para retornar una lista ordenada alfabéticamente de los contactos
         List<Contacto> ordenados = new ArrayList<>(contactos);
         ordenados.sort(Comparator.comparing(Contacto::getNombre).thenComparing(Contacto::getApellido));
         return ordenados;
     }
 
-    public Contacto buscarContacto(String nombre, String apellido) {
+    public Contacto buscarContacto(String nombre, String apellido) { // Método para buscar un contacto por nombre y apellido
         for (Contacto c : contactos) {
             if (c.getNombre().equals(nombre) && c.getApellido().equals(apellido)) {
                 return c;
@@ -53,14 +53,14 @@ public class Agenda {
 
     }
 
-    public boolean eliminarContacto(Contacto c) {
+    public boolean eliminarContacto(Contacto c) { // Método para eliminar un contacto
         if (contactos.remove(c)) {
             return true;
         }
         return false;
     }
 
-    public boolean modificarTelefono(String nombre, String apellido, String nuevoTelefono) {
+    public boolean modificarTelefono(String nombre, String apellido, String nuevoTelefono) { // Método para modificar el teléfono de un contacto dado el nombre y apellido
         for (Contacto c : contactos) {
             if (c.getNombre().equals(nombre) && c.getApellido().equals(apellido)) {
                 c.setTelefono(nuevoTelefono);
@@ -72,9 +72,9 @@ public class Agenda {
 
     public boolean agendaLlena() {
         return contactos.size() >= maxContactos;
-    }
+    } // Retorna si la agenda está llena
 
     public int espacioLibre() {
         return maxContactos - contactos.size();
-    }
+    } // Retorna la cantidad de espacios libres en la agenda
 }

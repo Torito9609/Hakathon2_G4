@@ -1,4 +1,6 @@
 package controlador;
+
+//Se importan los demás paquetes.
 import modelo.Agenda;
 import vista.Vista;
 import modelo.Contacto;
@@ -6,15 +8,16 @@ import modelo.Contacto;
 import java.util.List;
 
 public class Controlador {
+    //Atributos del controlador
     private Vista vista;
     private Agenda agenda;
 
-    public Controlador(Vista vista, Agenda agenda){
+    public Controlador(Vista vista, Agenda agenda){ // Constructor del controlador
         this.vista = vista;
         this.agenda = agenda;
     }
 
-    public void ejecutar(){
+    public void ejecutar(){ // Método ejecutar, permite ejecutar el programa como un ciclo
         boolean salir = false;
 
         while (!salir) {
@@ -49,7 +52,7 @@ public class Controlador {
         }
     }
 
-    public void manejarAnadirContacto() {
+    public void manejarAnadirContacto() { //Controlador para añadir contacto
         String[] datos = vista.pedirDatosContacto();
 
         try{
@@ -77,7 +80,7 @@ public class Controlador {
         }
     }
 
-    public void manejarEliminarContacto(){
+    public void manejarEliminarContacto(){ // Controlador para eliminar un contacto
         String nombre = vista.pedirNombreContacto();
         String apellido = vista.pedirApellidoContacto();
 
@@ -97,7 +100,7 @@ public class Controlador {
 
     }
 
-    public void manejarModificarTelefono(){
+    public void manejarModificarTelefono(){ // Controlador para modificar un contacto
         String nombre = vista.pedirNombreContacto();
         String apellido = vista.pedirApellidoContacto();
 
@@ -120,7 +123,7 @@ public class Controlador {
         }
     }
 
-    public void manejarBuscarContacto(){
+    public void manejarBuscarContacto(){ // Controlador para buscar un contacto
         String nombre = vista.pedirNombreContacto();
         String apellido = vista.pedirApellidoContacto();
 
@@ -133,7 +136,7 @@ public class Controlador {
         }
     }
 
-    public void manejarListarContactos(){
+    public void manejarListarContactos(){ // Controlador para listar todos los contactos
         List<Contacto> listaContactos = agenda.listarContactos();
 
         if(listaContactos.isEmpty()){
@@ -145,7 +148,7 @@ public class Controlador {
         System.out.println("");
     }
 
-    public void manejarAgendaLlena_EspaciosLibres(){
+    public void manejarAgendaLlena_EspaciosLibres(){ // Controlador para ver espacios libres
         boolean agendaEstaLlena = agenda.agendaLlena();
         int espaciosLibres = agenda.espacioLibre();
 
