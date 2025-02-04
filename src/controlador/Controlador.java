@@ -1,4 +1,6 @@
 package controlador;
+import modelo.Agenda;
+import modelo.Contacto;
 
 public class Controlador {
     private Vista vista;
@@ -80,9 +82,9 @@ public class Controlador {
         boolean exito = agenda.eliminarContacto(contactoAEliminar);
 
         if (exito){
-            vista.mostrarMensaje("Contacto eliminado con éxito.")
+            vista.mostrarMensaje("Contacto eliminado con éxito.");
         } else{
-            vista.mostrarMensaje("El contacto no se puede eliminar por una razón descnocida.")
+            vista.mostrarMensaje("El contacto no se puede eliminar por una razón descnocida.");
         }
 
     }
@@ -91,7 +93,7 @@ public class Controlador {
         String nombre = vista.pedirNombreContacto();
         String apellido = vista.pedirApellidoContacto();
 
-        Contacto contactoExistente = agenda.buscarContacto();
+        Contacto contactoExistente = agenda.modificarTelefono(nombre, apellido, nuevoNumero);
 
         if(contactoExistente == null){
             vista.mostrarMensaje("No se encontró un contacto con ese nombre o apellido.");
@@ -139,7 +141,7 @@ public class Controlador {
         int espaciosLibres = agenda.espacioLibre();
 
         if(agendaEstaLlena){
-            vista.mostrarMensaje("La agenda se encuentra completamente llena."):
+            vista.mostrarMensaje("La agenda se encuentra completamente llena.");
         }else{
             vista.mostrarMensaje("La agenda no esta llena. Tienes " + espaciosLibres + " Espacios libres.");
         }
